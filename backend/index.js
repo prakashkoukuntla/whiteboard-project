@@ -13,7 +13,7 @@ const app = express();
 // Enable CORS - Should be placed before other routes
 app.use(
   cors({
-    origin: "http://localhost:3000", // Replace with your frontend URL
+    origin: "https://dreamy-buttercream-319bbb.netlify.app", // Replace with your frontend URL
     credentials: true, // Allow credentials
   })
 );
@@ -44,9 +44,9 @@ app.use(
       collectionName: "sessions", // Optional: specify the collection name for sessions
     }),
     cookie: {
-      secure: false, // Set to true if using HTTPS
+      secure: true, // Set to true if using HTTPS
       httpOnly: true,
-      sameSite: "Lax", // Change to "None" for cross-origin requests in production
+      sameSite: "None", // Change to "None" for cross-origin requests in production
     },
   }),
   (req, res, next) => {
@@ -175,19 +175,6 @@ app.patch("/annotations/:id", async (req, res) => {
     res.status(500).send("Failed to update annotation");
   }
 });
-
-// // // GET route to fetch annotations for a specific whiteboard
-// app.get("/whiteboards/:whiteboardId/annotations", async (req, res) => {
-//   const whiteboardId = req.params.whiteboardId;
-
-//   try {
-//     const annotations = await Annotation.find({ whiteboardId });
-//     res.json(annotations);
-//   } catch (error) {
-//     console.error("Error retrieving annotations:", error);
-//     res.status(500).send("Failed to retrieve annotations");
-//   }
-// });
 
 // GET route to fetch annotations for a specific whiteboard and logged-in user
 app.get("/whiteboards/:whiteboardId/annotations", async (req, res) => {

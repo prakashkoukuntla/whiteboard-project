@@ -18,6 +18,9 @@ export const WhiteboardProvider = ({ children }) => {
         }
       );
 
+      console.log("Request Headers:", whiteboardsRes.config.headers); // Log request headers
+      console.log("Response Data:", whiteboardsRes.data); // Log response data
+
       const whiteboardsWithStatus = await Promise.all(
         whiteboardsRes.data
           .filter((whiteboard) => whiteboard.id !== "default_id")

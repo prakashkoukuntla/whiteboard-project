@@ -39,7 +39,14 @@ export const WhiteboardProvider = ({ children }) => {
 
       setWhiteboards(whiteboardsWithStatus);
     } catch (error) {
-      console.error("Error fetching whiteboards with annotations:", error);
+      if (error.response) {
+        console.error("Error Response:", error.response);
+      } else if (error.request) {
+        console.error("Error Request:", error.request);
+      } else {
+        console.error("Error Message:", error.message);
+      }
+      console.error("Error Config:", error.config);
     }
   };
 

@@ -10,6 +10,7 @@ export const WhiteboardProvider = ({ children }) => {
 
   // Function to fetch whiteboards with user-specific annotation status
   const refreshWhiteboards = async () => {
+    console.log("refreshWhiteboards called!");
     try {
       const whiteboardsRes = await axios.get(
         "https://whiteboard-backend-062baa2e4c1a.herokuapp.com/whiteboards",

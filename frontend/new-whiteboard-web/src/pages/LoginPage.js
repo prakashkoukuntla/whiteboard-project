@@ -18,7 +18,7 @@ function LoginPage() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/login",
+        "https://whiteboard-backend-062baa2e4c1a.herokuapp.com/login",
         {
           name: username,
         },

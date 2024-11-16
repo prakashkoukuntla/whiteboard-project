@@ -12,7 +12,7 @@ export const WhiteboardProvider = ({ children }) => {
   const refreshWhiteboards = async () => {
     try {
       const whiteboardsRes = await axios.get(
-        "http://localhost:5001/whiteboards",
+        "https://whiteboard-backend-062baa2e4c1a.herokuapp.com/whiteboards",
         {
           withCredentials: true,
         }
@@ -23,7 +23,7 @@ export const WhiteboardProvider = ({ children }) => {
           .filter((whiteboard) => whiteboard.id !== "default_id")
           .map(async (whiteboard) => {
             const annotationsRes = await axios.get(
-              `http://localhost:5001/whiteboards/${whiteboard.id}/annotations`,
+              `https://whiteboard-backend-062baa2e4c1a.herokuapp.com/whiteboards/${whiteboard.id}/annotations`,
               { withCredentials: true }
             );
             return {

@@ -6,7 +6,6 @@ import {
   IconButton,
   TextField,
   Paper,
-  Button,
 } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { Stage, Layer, Image as KonvaImage, Rect } from "react-konva";
@@ -27,7 +26,7 @@ function WhiteboardLabelingPage() {
   const [annotations, setAnnotations] = useState([]);
   const [newAnnotation, setNewAnnotation] = useState(null);
   const [activeAnnotation, setActiveAnnotation] = useState(null);
-  const [transcription, setTranscription] = useState("");
+  //const [transcription, setTranscription] = useState("");
   const [panelWidth, setPanelWidth] = useState(70);
   const transcriptionRef = useRef(null);
   const [pendingTranscription, setPendingTranscription] = useState("");
@@ -37,18 +36,17 @@ function WhiteboardLabelingPage() {
     const fetchWhiteboardData = async () => {
       try {
         const whiteboardRes = await axios.get(
-          `http://localhost:5001/whiteboards/${id}`,
+          `https://whiteboard-backend-062baa2e4c1a.herokuapp.com/whiteboards/${id}`,
           { withCredentials: true }
         );
         setWhiteboard(whiteboardRes.data);
 
         // Fetch and set annotations
         const annotationsRes = await axios.get(
-          `http://localhost:5001/whiteboards/${id}/annotations`,
+          `https://whiteboard-backend-062baa2e4c1a.herokuapp.com/whiteboards/${id}/annotations`,
           { withCredentials: true }
         );
         setAnnotations(annotationsRes.data);
-        console.log("IT GOT HERE");
         console.log(annotationsRes.data);
       } catch (error) {
         console.error("Error fetching whiteboard data:", error);
@@ -93,7 +91,7 @@ function WhiteboardLabelingPage() {
 
       setNewAnnotation(null); // Clear newAnnotation to prevent duplicates
 
-      setTranscription(annotationToSave.transcription); // Set transcription for the new annotation
+      //setTranscription(annotationToSave.transcription); // Set transcription for the new annotation
       saveAnnotation(annotationToSave); // Save annotation to the backend
     }
   };
@@ -104,7 +102,7 @@ function WhiteboardLabelingPage() {
     console.log(`/whiteboards/${id}/annotations`);
     try {
       const response = await axios.post(
-        `http://localhost:5001/whiteboards/${id}/annotations`,
+        `https://whiteboard-backend-062baa2e4c1a.herokuapp.com/whiteboards/${id}/annotations`,
         annotation,
         { withCredentials: true }
       );
@@ -127,7 +125,7 @@ function WhiteboardLabelingPage() {
 
     try {
       const response = await axios.patch(
-        `http://localhost:5001/annotations/${annotation._id}`,
+        `https://whiteboard-backend-062baa2e4c1a.herokuapp.com/annotations/${annotation._id}`,
         updatedFields,
         { withCredentials: true }
       );

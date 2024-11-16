@@ -20,7 +20,7 @@ const handleDownloadData = async () => {
   try {
     // Fetch all whiteboards and their annotations
     const whiteboardsRes = await axios.get(
-      "http://localhost:5001/whiteboards",
+      "https://whiteboard-backend-062baa2e4c1a.herokuapp.com/whiteboards",
       { withCredentials: true }
     );
 
@@ -28,7 +28,7 @@ const handleDownloadData = async () => {
     const whiteboardChunks = await Promise.all(
       whiteboardsRes.data.map(async (whiteboard) => {
         const annotationsRes = await axios.get(
-          `http://localhost:5001/whiteboards/${whiteboard.id}/annotations`,
+          `https://whiteboard-backend-062baa2e4c1a.herokuapp.com/whiteboards/${whiteboard.id}/annotations`,
           { withCredentials: true }
         );
 

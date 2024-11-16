@@ -10,6 +10,8 @@ function LoginPage() {
   const { refreshWhiteboards } = useWhiteboard(); // Access the setWhiteboards function from context
   const navigate = useNavigate();
 
+  console.log("this is the right stuff");
+
   const handleLogin = async () => {
     if (username.trim() === "") {
       alert("Please enter a username");
